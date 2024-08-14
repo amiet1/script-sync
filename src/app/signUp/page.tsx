@@ -1,16 +1,16 @@
 'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import supabase from '../../../lib/supabase';
-
 interface FormData {
   name: string;
   email: string;
   password: string;
   location: string;
-  experienceLevel: string;
+  experience_level: string;
   profile_picture_url: string;
   interests: string;
   bio: string;
+  role:string;
 }
 
 const SignUpPage: React.FC = () => {
@@ -19,10 +19,11 @@ const SignUpPage: React.FC = () => {
     email: '',
     password: '',
     location: '',
-    experienceLevel: '',
+    experience_level: '',
     profile_picture_url: '',
     interests: '',
     bio: '',
+    role: '',
   });
 
   const [error, setError] = useState<string | null>(null);
@@ -44,11 +45,12 @@ const SignUpPage: React.FC = () => {
       console.log('Sign-up successful');
 
       const user = data.user;
-
+      console.log(user)
+      
       if (user) {
         // Insert the user's profile
         const { error: profileError } = await supabase
-          .from('profile')
+          .from('Profile')
           .insert([
             {
               id: user.id, // Use the user ID from the signed-up user
@@ -56,7 +58,7 @@ const SignUpPage: React.FC = () => {
               name: formData.name,
               location: formData.location,
               interests: formData.interests,
-              experience_level: formData.experienceLevel,
+              experience_level: formData.experience_level,
               profile_picture_url: formData.profile_picture_url,
               bio: formData.bio,
               role: 'user',
@@ -97,7 +99,8 @@ const SignUpPage: React.FC = () => {
         <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
         <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
         <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} />
-        <input type="text" name="experienceLevel" placeholder="Experience Level" value={formData.experienceLevel} onChange={handleChange} />
+        <input type="text" name="experience_level" placeholder="Experience Level" value={formData.experience_level} onChange={handleChange} />
+        <input type="text" name="role" placeholder="role" value={formData.role} onChange={handleChange} />
         <input type="text" name="interests" placeholder="Interests (comma separated)" value={formData.interests} onChange={handleChange} />
         <textarea name="bio" placeholder="Bio" value={formData.bio} onChange={handleChange} />
         <button type="submit">Sign Up</button>
