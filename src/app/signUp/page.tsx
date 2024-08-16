@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import supabase from '../../../lib/supabase';
+
 interface FormData {
   name: string;
   email: string;
@@ -90,21 +91,88 @@ const SignUpPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Let's get Synced!</h1>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>Sign up successful!</p>}
-        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-        <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} />
-        <input type="text" name="experience_level" placeholder="Experience Level" value={formData.experience_level} onChange={handleChange} />
-        <input type="text" name="role" placeholder="role" value={formData.role} onChange={handleChange} />
-        <input type="text" name="interests" placeholder="Interests (comma separated)" value={formData.interests} onChange={handleChange} />
-        <textarea name="bio" placeholder="Bio" value={formData.bio} onChange={handleChange} />
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-green-300 to-green-500">
+      <div className="bg-black text-white p-8 rounded-lg shadow-lg w-96">
+        <h1 className="text-3xl font-bold mb-6 text-center">Let's get Synced!</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          {success && <p className="text-green-500 text-sm mt-2">Sign up successful!</p>}
+          
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <input
+            type="text"
+            name="location"
+            placeholder="Location"
+            value={formData.location}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <input
+            type="text"
+            name="experience_level"
+            placeholder="Experience Level"
+            value={formData.experience_level}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <input
+            type="text"
+            name="role"
+            placeholder="Role"
+            value={formData.role}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <input
+            type="text"
+            name="interests"
+            placeholder="Interests (comma separated)"
+            value={formData.interests}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          <textarea
+            name="bio"
+            placeholder="Bio"
+            value={formData.bio}
+            onChange={handleChange}
+            className="w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-400"
+          />
+          
+          <button
+            type="submit"
+            className="w-full p-3  text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-green-700"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
